@@ -1,6 +1,6 @@
-import {createElement} from "../render";
-import {FILTER_TYPES} from "../constants";
-import {capitalizeFirstLetter} from "../utils/capitalize-first-letter";
+import {createElement} from '../render';
+import {FILTER_TYPES} from '../constants';
+import {capitalizeFirstLetter} from '../utils/capitalize-first-letter';
 
 
 const createFilterItemTemplate = (type) => `

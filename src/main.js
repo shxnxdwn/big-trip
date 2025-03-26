@@ -1,8 +1,8 @@
-import TripInfoView from "./view/trip-info-view";
-import FilterView from "./view/filter-view";
-import {RenderPosition} from "./constants";
-import {render} from "./render";
-import EventListPresenter from "./presenter/event-list-presenter";
+import TripInfoView from './view/trip-info-view';
+import FilterView from './view/filter-view';
+import {RenderPosition} from './constants';
+import {render} from './render';
+import EventListPresenter from './presenter/event-list-presenter';
 
 
 const tripInfoContainer = document.querySelector('.trip-main');
