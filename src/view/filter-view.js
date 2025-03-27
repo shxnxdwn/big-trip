@@ -1,4 +1,4 @@
-import {createElement} from '../render';
+import {createElement} from '../utils/render';
 import {FILTER_TYPES} from '../constants';
 import {capitalizeFirstLetter} from '../utils/capitalize-first-letter';
 

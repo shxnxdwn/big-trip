@@ -1,4 +1,4 @@
-import {RenderPosition} from './constants';
+import {RenderPosition} from '../constants';
 
 function createElement(template) {
   const newElement = document.createElement('div');

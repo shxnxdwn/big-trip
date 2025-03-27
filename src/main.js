@@ -1,8 +1,9 @@
 import TripInfoView from './view/trip-info-view';
 import FilterView from './view/filter-view';
-import {RenderPosition} from './constants';
-import {render} from './render';
 import EventListPresenter from './presenter/event-list-presenter';
+import {RenderPosition} from './constants';
+import {render} from './utils/render';
+import {getTripPoints} from './mock/tasks';
 
 
 const tripInfoContainer = document.querySelector('.trip-main');
