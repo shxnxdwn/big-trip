@@ -1,10 +1,10 @@
 import {getRandomArrayElement} from '../utils/get-random-array-element';
 
 
-const tripTypes = ['Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'];
+const mockEventTypes = ['Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'];
 
 
-const tripDestinations = [
+const mockEventDestinations = [
   {
     'description': 'Chamonix, is a beautiful city, a true asian pearl, with crowded streets.',
     'name': 'Chamonix',
@@ -38,7 +38,7 @@ const tripDestinations = [
 ];
 
 
-const tripOffers = [
+const mockEventOffers = [
   {
     title: 'Add luggage',
     price: 30
@@ -62,40 +62,40 @@ const tripOffers = [
 ];
 
 
-const tripPoints = [
+const mockEvents = [
   {
-    type: getRandomArrayElement(tripTypes),
-    destination: getRandomArrayElement(tripDestinations),
+    type: getRandomArrayElement(mockEventTypes),
+    destination: getRandomArrayElement(mockEventDestinations),
     duration: {
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
     cost: '€100',
-    offers: getRandomArrayElement(tripOffers),
+    offers: getRandomArrayElement(mockEventOffers),
     isFavorite: false
   },
   {
-    type: getRandomArrayElement(tripTypes),
-    destination: getRandomArrayElement(tripDestinations),
+    type: getRandomArrayElement(mockEventTypes),
+    destination: getRandomArrayElement(mockEventDestinations),
     duration: {
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
     cost: '€100',
-    offers: getRandomArrayElement(tripOffers),
+    offers: getRandomArrayElement(mockEventOffers),
     isFavorite: true
   },
   {
-    type: getRandomArrayElement(tripTypes),
-    destination: getRandomArrayElement(tripDestinations),
+    type: getRandomArrayElement(mockEventTypes),
+    destination: getRandomArrayElement(mockEventDestinations),
     duration: {
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
     cost: '€100',
-    offers: getRandomArrayElement(tripOffers),
+    offers: getRandomArrayElement(mockEventOffers),
     isFavorite: false
   }
 ];
 
-export const getTripPoints = () => tripPoints;
+export const getRandomTripEvent = () => getRandomArrayElement(mockEvents);
