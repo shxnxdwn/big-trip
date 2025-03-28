@@ -70,8 +70,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '€100',
-    offers: getRandomArrayElement(mockEventOffers),
+    cost: '100',
+    offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+    ],
     isFavorite: false
   },
   {
@@ -81,8 +84,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '€100',
-    offers: getRandomArrayElement(mockEventOffers),
+    cost: '50',
+    offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+    ],
     isFavorite: true
   },
   {
@@ -92,9 +98,68 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '€100',
-    offers: getRandomArrayElement(mockEventOffers),
+    cost: '300',
+    offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+    ],
     isFavorite: false
+  },
+  {
+    type: getRandomArrayElement(mockEventTypes),
+    destination: getRandomArrayElement(mockEventDestinations),
+    duration: {
+      start: new Date('2025-04-20 10:00:00'),
+      end: new Date('2025-05-20 20:00:00')
+    },
+    cost: '500',
+    offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+    ],
+    isFavorite: false
+  },
+  {
+    type: getRandomArrayElement(mockEventTypes),
+    destination: getRandomArrayElement(mockEventDestinations),
+    duration: {
+      start: new Date('2025-04-20 10:00:00'),
+      end: new Date('2025-05-20 20:00:00')
+    },
+    cost: '200',
+    offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+    ],
+    isFavorite: false
+  },
+  {
+    type: getRandomArrayElement(mockEventTypes),
+    destination: getRandomArrayElement(mockEventDestinations),
+    duration: {
+      start: new Date('2025-04-20 10:00:00'),
+      end: new Date('2025-05-20 20:00:00')
+    },
+    cost: '300',
+    offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+    ],
+    isFavorite: true
+  },
+  {
+    type: getRandomArrayElement(mockEventTypes),
+    destination: getRandomArrayElement(mockEventDestinations),
+    duration: {
+      start: new Date('2025-04-20 10:00:00'),
+      end: new Date('2025-05-20 20:00:00')
+    },
+    cost: '100',
+    offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+    ],
+    isFavorite: true
   }
 ];
 

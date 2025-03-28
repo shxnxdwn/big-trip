@@ -1,4 +1,4 @@
-const EVENTS_COUNT = 5;
+const EVENTS_COUNT = 9;
 
 const FILTER_TYPES = ['everything', 'future', 'present', 'past'];
 const SORT_TYPES = ['day', 'event', 'time', 'price', 'offers'];
