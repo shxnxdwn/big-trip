@@ -3,7 +3,7 @@ import FilterView from './view/filter-view';
 import EventListPresenter from './presenter/event-list-presenter';
 import EventListModel from './model/event-list-model';
 import {RenderPosition} from './constants';
-import {render} from './utils/render';
+import {render} from './utils';
 
 
 const tripInfoContainer = document.querySelector('.trip-main');

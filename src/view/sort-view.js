@@ -1,6 +1,5 @@
-import {createElement} from '../utils/render';
+import {createElement, capitalizeFirstLetter} from '../utils';
 import {SORT_TYPES} from '../constants';
-import {capitalizeFirstLetter} from '../utils/capitalize-first-letter';
 
 
 const createSortItemTemplate = (type) => `

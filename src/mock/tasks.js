@@ -1,4 +1,4 @@
-import {getRandomArrayElement} from '../utils/get-random-array-element';
+import {getRandomArrayElement} from '../utils';
 
 
 const mockEventTypes = ['Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'];
