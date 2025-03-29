@@ -71,13 +71,7 @@ const mockEvents = [
       end: new Date('2025-05-20 20:00:00')
     },
     price: '100',
-    offers: [
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-    ],
+    offers: Array.from({ length: 5 }, () => getRandomArrayElement(mockEventOffers)),
     isFavorite: false
   },
   {
@@ -88,13 +82,7 @@ const mockEvents = [
       end: new Date('2025-05-20 20:00:00')
     },
     price: '50',
-    offers: [
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-    ],
+    offers: Array.from({ length: 5 }, () => getRandomArrayElement(mockEventOffers)),
     isFavorite: true
   },
   {
@@ -105,13 +93,7 @@ const mockEvents = [
       end: new Date('2025-05-20 20:00:00')
     },
     price: '300',
-    offers: [
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-    ],
+    offers: Array.from({ length: 5 }, () => getRandomArrayElement(mockEventOffers)),
     isFavorite: false
   },
   {
@@ -122,13 +104,7 @@ const mockEvents = [
       end: new Date('2025-05-20 20:00:00')
     },
     price: '500',
-    offers: [
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-    ],
+    offers: Array.from({ length: 5 }, () => getRandomArrayElement(mockEventOffers)),
     isFavorite: false
   },
   {
@@ -139,13 +115,7 @@ const mockEvents = [
       end: new Date('2025-05-20 20:00:00')
     },
     price: '200',
-    offers: [
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-    ],
+    offers: Array.from({ length: 5 }, () => getRandomArrayElement(mockEventOffers)),
     isFavorite: false
   },
   {
@@ -156,13 +126,7 @@ const mockEvents = [
       end: new Date('2025-05-20 20:00:00')
     },
     price: '300',
-    offers: [
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-    ],
+    offers: Array.from({ length: 5 }, () => getRandomArrayElement(mockEventOffers)),
     isFavorite: true
   },
   {
@@ -173,13 +137,7 @@ const mockEvents = [
       end: new Date('2025-05-20 20:00:00')
     },
     price: '100',
-    offers: [
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-      getRandomArrayElement(mockEventOffers),
-    ],
+    offers: Array.from({ length: 5 }, () => getRandomArrayElement(mockEventOffers)),
     isFavorite: true
   }
 ];

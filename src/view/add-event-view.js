@@ -81,18 +81,18 @@ const createEventTypeTemplate = ({type}) => `
 
 
 const createEventDestinationTemplate = ({type, destination}) => `
-      <div class="event__field-group  event__field-group--destination">
-        <label class="event__label  event__type-output" for="event-destination-1">
-          ${type}
-        </label>
-        <input class="event__input  event__input--destination" id="event-destination-1" type="text"
-               name="event-destination" value="${destination.name}" list="destination-list-1">
-        <datalist id="destination-list-1">
-          <option value="Amsterdam"></option>
-          <option value="Geneva"></option>
-          <option value="Chamonix"></option>
-        </datalist>
-      </div>`;
+  <div class="event__field-group  event__field-group--destination">
+    <label class="event__label  event__type-output" for="event-destination-1">
+      ${type}
+    </label>
+    <input class="event__input  event__input--destination" id="event-destination-1" type="text"
+           name="event-destination" value="${destination.name}" list="destination-list-1">
+    <datalist id="destination-list-1">
+      <option value="Amsterdam"></option>
+      <option value="Geneva"></option>
+      <option value="Chamonix"></option>
+    </datalist>
+  </div>`;
 
 
 const createEventDurationTemplate = ({duration: {start, end}}) => {
@@ -100,16 +100,27 @@ const createEventDurationTemplate = ({duration: {start, end}}) => {
   const endTime = dayjs(end).format('DD/MM/YY HH:mm');
 
   return `
-      <div class="event__field-group  event__field-group--time">
-        <label class="visually-hidden" for="event-start-time-1">From</label>
-        <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time"
-               value="${startTime}">
-        &mdash;
-        <label class="visually-hidden" for="event-end-time-1">To</label>
-        <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time"
-               value="${endTime}">
-      </div>`;
+    <div class="event__field-group  event__field-group--time">
+      <label class="visually-hidden" for="event-start-time-1">From</label>
+      <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time"
+             value="${startTime}">
+      &mdash;
+      <label class="visually-hidden" for="event-end-time-1">To</label>
+      <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time"
+             value="${endTime}">
+    </div>`;
 };
+
+
+const createEventPriceTemplate = ({price}) => `
+  <div class="event__field-group  event__field-group--price">
+    <label class="event__label" for="event-price-1">
+      <span class="visually-hidden">Price</span>
+      &euro; ${price}
+    </label>
+    <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="">
+  </div>
+`;
 
 
 const createEventOffersTemplate = ({offers}) => `
@@ -129,17 +140,6 @@ const createEventOffersTemplate = ({offers}) => `
       </div>`).join('')}
     </div>
   </section>
-`;
-
-
-const createEventPriceTemplate = ({price}) => `
-  <div class="event__field-group  event__field-group--price">
-    <label class="event__label" for="event-price-1">
-      <span class="visually-hidden">Price</span>
-      &euro; ${price}
-    </label>
-    <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="">
-  </div>
 `;
 
 
