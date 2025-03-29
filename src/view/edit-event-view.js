@@ -181,8 +181,12 @@ const createEditEventTemplate = () => `
 
 
 export default class EditEventView {
+  constructor({tripEvent}) {
+    this.tripEvent = tripEvent;
+  }
+
   getTemplate() {
-    return createEditEventTemplate();
+    return createEditEventTemplate(this.tripEvent);
   }
 
   getElement() {

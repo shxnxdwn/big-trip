@@ -1,4 +1,4 @@
-// import AddEventView from '../view/add-event-view';
+import AddEventView from '../view/add-event-view';
 import EditEventView from '../view/edit-event-view';
 import SortView from '../view/sort-view';
 import TripEventView from '../view/trip-event-view';
@@ -18,9 +18,10 @@ export default class EventListPresenter {
 
     render(new SortView(), this.container);
     render(this.tripList, this.container);
-    render(new EditEventView(), this.tripList.getElement());
+    render(new AddEventView({tripEvent: this.eventList[0]}), this.tripList.getElement());
+    render(new EditEventView({tripEvent: this.eventList[1]}), this.tripList.getElement());
 
-    for (let i = 0; i < this.eventList.length; i++) {
+    for (let i = 2; i < this.eventList.length; i++) {
       render(new TripEventView({tripEvent: this.eventList[i]}), this.tripList.getElement());
     }
   }

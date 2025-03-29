@@ -1,7 +1,7 @@
 import {getRandomArrayElement} from '../utils';
 
 
-const mockEventTypes = ['Taxi', 'Bus', 'Train', 'Ship', 'Drive', 'Flight', 'Check-in', 'Sightseeing', 'Restaurant'];
+const mockEventTypes = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
 
 
 const mockEventDestinations = [
@@ -70,8 +70,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '100',
+    price: '100',
     offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
     ],
@@ -84,8 +87,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '50',
+    price: '50',
     offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
     ],
@@ -98,8 +104,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '300',
+    price: '300',
     offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
     ],
@@ -112,8 +121,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '500',
+    price: '500',
     offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
     ],
@@ -126,8 +138,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '200',
+    price: '200',
     offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
     ],
@@ -140,8 +155,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '300',
+    price: '300',
     offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
     ],
@@ -154,8 +172,11 @@ const mockEvents = [
       start: new Date('2025-04-20 10:00:00'),
       end: new Date('2025-05-20 20:00:00')
     },
-    cost: '100',
+    price: '100',
     offers: [
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
+      getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
       getRandomArrayElement(mockEventOffers),
     ],

@@ -1,10 +1,9 @@
 import {createElement} from '../utils';
 import dayjs from 'dayjs';
 
-/* eslint-disable */
 
 const createTripEventTemplate = (tripEvent) => {
-  const {type, duration, destination: {name: destinationName}, offers, cost, isFavorite} = tripEvent;
+  const {type, duration, destination: {name: destinationName}, offers, price, isFavorite} = tripEvent;
 
   const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
 
@@ -12,7 +11,7 @@ const createTripEventTemplate = (tripEvent) => {
     const className = dayjs(start).format('YYYY-MM-DD');
     const innerText = dayjs(start).format('MMM DD');
 
-    return `<time class="event__date" datetime="${className}">${innerText}</time>`
+    return `<time class="event__date" datetime="${className}">${innerText}</time>`;
   };
 
   const createEventScheduleTemplate = ({start, end}) => {
@@ -37,8 +36,8 @@ const createTripEventTemplate = (tripEvent) => {
   };
 
 
-  const createOffersTemplate = (offers) =>
-    offers.map((offer) => `
+  const createOffersTemplate = (eventOffers) =>
+    eventOffers.map((offer) => `
     <li class="event__offer">
       <span class="event__offer-title">${offer.title}</span>
       &plus;&euro;&nbsp;
@@ -56,7 +55,7 @@ const createTripEventTemplate = (tripEvent) => {
         <h3 class="event__title">${type} ${destinationName}</h3>
         ${createEventScheduleTemplate(duration)}
         <p class="event__price">
-          &euro;&nbsp;<span class="event__price-value">${cost}</span>
+          &euro;&nbsp;<span class="event__price-value">${price}</span>
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">
