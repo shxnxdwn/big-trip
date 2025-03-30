@@ -2,28 +2,24 @@ import {createElement} from '../utils';
 import dayjs from 'dayjs';
 
 
-const createTripEventTemplate = (tripEvent) => {
-  const {type, duration, destination: {name: destinationName}, offers, price, isFavorite} = tripEvent;
+const createEventDateTemplate = ({duration: {start}}) => {
+  const className = dayjs(start).format('YYYY-MM-DD');
+  const innerText = dayjs(start).format('MMM DD');
 
-  const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
+  return `<time class="event__date" datetime="${className}">${innerText}</time>`;
+};
 
-  const createEventDateTemplate = ({start}) => {
-    const className = dayjs(start).format('YYYY-MM-DD');
-    const innerText = dayjs(start).format('MMM DD');
 
-    return `<time class="event__date" datetime="${className}">${innerText}</time>`;
-  };
+const createEventScheduleTemplate = ({duration: {start, end}}) => {
+  const startTime = dayjs(start);
+  const endTime = dayjs(end);
 
-  const createEventScheduleTemplate = ({start, end}) => {
-    const startTime = dayjs(start);
-    const endTime = dayjs(end);
+  const diffInMinutes = endTime.diff(startTime, 'minute');
+  const hours = Math.floor(diffInMinutes / 60);
+  const minutes = diffInMinutes % 60;
+  const formattedDuration = `${hours}H ${minutes}M`;
 
-    const diffInMinutes = endTime.diff(startTime, 'minute');
-    const hours = Math.floor(diffInMinutes / 60);
-    const minutes = diffInMinutes % 60;
-    const formattedDuration = `${hours}H ${minutes}M`;
-
-    return `
+  return `
       <div class="event__schedule">
           <p class="event__time">
             <time class="event__start-time" datetime="${startTime.format('YYYY-MM-DDTHH:mm')}">${startTime.format('HH:mm')}</time>
@@ -33,11 +29,11 @@ const createTripEventTemplate = (tripEvent) => {
           <p class="event__duration">${formattedDuration}</p>
         </div>
     `;
-  };
+};
 
 
-  const createOffersTemplate = (eventOffers) =>
-    eventOffers.map((offer) => `
+const createOffersTemplate = (offers) =>
+  offers.map((offer) => `
     <li class="event__offer">
       <span class="event__offer-title">${offer.title}</span>
       &plus;&euro;&nbsp;
@@ -45,15 +41,20 @@ const createTripEventTemplate = (tripEvent) => {
     </li>
   `).join('');
 
+
+const createTripEventTemplate = (tripEvent) => {
+  const {type, offers, destination: {name: destinationName}, price, isFavorite} = tripEvent;
+  const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
+
   return (
     `<li class="trip-events__item">
       <div class="event">
-        ${createEventDateTemplate(duration)}
+        ${createEventDateTemplate(tripEvent)}
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
         </div>
         <h3 class="event__title">${type} ${destinationName}</h3>
-        ${createEventScheduleTemplate(duration)}
+        ${createEventScheduleTemplate(tripEvent)}
         <p class="event__price">
           &euro;&nbsp;<span class="event__price-value">${price}</span>
         </p>
@@ -79,7 +80,6 @@ export default class TripEventView {
   constructor({tripEvent}) {
     this.tripEvent = tripEvent;
   }
-
 
   getTemplate() {
     return createTripEventTemplate(this.tripEvent);
