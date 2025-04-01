@@ -26,11 +26,13 @@ export default class EventListPresenter {
     render(new EditEventView({tripEvent: this.#eventList[1]}), this.#eventListElement.element);
 
     for (let i = 2; i < this.#eventList.length; i++) {
-      render(new TripEventView({tripEvent: this.#eventList[i]}), this.#eventListElement.element);
+      this.#renderEvent(this.#eventList[i]);
     }
   }
 
-  #renderEvent() {
+  #renderEvent(tripEvent) {
+    const tripEventElement = new TripEventView({tripEvent});
 
+    render(tripEventElement, this.#eventListElement.element);
   }
 }
