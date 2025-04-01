@@ -7,23 +7,26 @@ import {render} from '../framework/render';
 
 
 export default class EventListPresenter {
+  #container = null;
+  #eventListModel = null;
+  #eventList = null;
+  #tripListElement = new TripListView();
+
   constructor({container, eventListModel}) {
-    this.container = container;
-    this.eventListModel = eventListModel;
+    this.#container = container;
+    this.#eventListModel = eventListModel;
   }
 
-  tripList = new TripListView();
-
   init() {
-    this.eventList = [...this.eventListModel.getEventList()];
+    this.#eventList = [...this.#eventListModel.eventList];
 
-    render(new SortView(), this.container);
-    render(this.tripList, this.container);
-    render(new AddEventView({tripEvent: this.eventList[0]}), this.tripList.getElement());
-    render(new EditEventView({tripEvent: this.eventList[1]}), this.tripList.getElement());
+    render(new SortView(), this.#container);
+    render(this.#tripListElement, this.#container);
+    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#tripListElement.element);
+    render(new EditEventView({tripEvent: this.#eventList[1]}), this.#tripListElement.element);
 
-    for (let i = 2; i < this.eventList.length; i++) {
-      render(new TripEventView({tripEvent: this.eventList[i]}), this.tripList.getElement());
+    for (let i = 2; i < this.#eventList.length; i++) {
+      render(new TripEventView({tripEvent: this.#eventList[i]}), this.#tripListElement.element);
     }
   }
 }
