@@ -180,12 +180,14 @@ const createEditEventTemplate = (tripEvent) => `
 
 
 export default class EditEventView extends AbstractView {
+  #tripEvent = null;
+
   constructor({tripEvent}) {
     super();
-    this.tripEvent = tripEvent;
+    this.#tripEvent = tripEvent;
   }
 
   get template() {
-    return createEditEventTemplate(this.tripEvent);
+    return createEditEventTemplate(this.#tripEvent);
   }
 }

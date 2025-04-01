@@ -77,12 +77,14 @@ const createTripEventTemplate = (tripEvent) => {
 
 
 export default class TripEventView extends AbstractView {
+  #tripEvent = null;
+
   constructor({tripEvent}) {
     super();
-    this.tripEvent = tripEvent;
+    this.#tripEvent = tripEvent;
   }
 
   get template() {
-    return createTripEventTemplate(this.tripEvent);
+    return createTripEventTemplate(this.#tripEvent);
   }
 }
