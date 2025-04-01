@@ -3,13 +3,6 @@ const EVENTS_COUNT = 9;
 const FILTER_TYPES = ['everything', 'future', 'present', 'past'];
 const SORT_TYPES = ['day', 'event', 'time', 'price', 'offers'];
 
-const RenderPosition = {
-  BEFOREBEGIN: 'beforebegin',
-  AFTERBEGIN: 'afterbegin',
-  BEFOREEND: 'beforeend',
-  AFTEREND: 'afterend',
-};
-
 
 const BLANK_EVENT = {
   type: 'flight',
@@ -54,4 +47,4 @@ const BLANK_EVENT = {
 };
 
 
-export {EVENTS_COUNT, BLANK_EVENT, FILTER_TYPES, SORT_TYPES, RenderPosition};
+export {EVENTS_COUNT, BLANK_EVENT, FILTER_TYPES, SORT_TYPES};

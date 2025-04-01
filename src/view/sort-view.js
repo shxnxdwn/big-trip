@@ -1,4 +1,5 @@
-import {createElement, capitalizeFirstLetter} from '../utils';
+import AbstractView from '../framework/view/abstract-view';
+import {capitalizeFirstLetter} from '../utils';
 import {SORT_TYPES} from '../constants';
 
 
@@ -18,19 +19,8 @@ const createSortTemplate = () => `
 `;
 
 
-export default class SortView {
-  getTemplate() {
+export default class SortView extends AbstractView {
+  get template() {
     return createSortTemplate();
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }

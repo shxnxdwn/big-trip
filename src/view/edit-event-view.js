@@ -1,4 +1,4 @@
-import {createElement} from '../utils';
+import AbstractView from '../framework/view/abstract-view';
 import dayjs from 'dayjs';
 
 
@@ -179,23 +179,13 @@ const createEditEventTemplate = (tripEvent) => `
 `;
 
 
-export default class EditEventView {
+export default class EditEventView extends AbstractView {
   constructor({tripEvent}) {
+    super();
     this.tripEvent = tripEvent;
   }
 
-  getTemplate() {
+  get template() {
     return createEditEventTemplate(this.tripEvent);
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }

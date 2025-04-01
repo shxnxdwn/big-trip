@@ -1,4 +1,5 @@
-import {createElement, capitalizeFirstLetter} from '../utils';
+import AbstractView from '../framework/view/abstract-view';
+import {capitalizeFirstLetter} from '../utils';
 import {FILTER_TYPES} from '../constants';
 
 
@@ -19,19 +20,8 @@ const createFilterTemplate = () => `
 `;
 
 
-export default class FilterView {
-  getTemplate() {
+export default class FilterView extends AbstractView {
+  get template() {
     return createFilterTemplate();
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }

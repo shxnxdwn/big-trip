@@ -2,8 +2,7 @@ import TripInfoView from './view/trip-info-view';
 import FilterView from './view/filter-view';
 import EventListPresenter from './presenter/event-list-presenter';
 import EventListModel from './model/event-list-model';
-import {RenderPosition} from './constants';
-import {render} from './utils';
+import {render, RenderPosition} from './framework/render';
 
 
 const tripInfoContainer = document.querySelector('.trip-main');
