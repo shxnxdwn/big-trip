@@ -2,17 +2,17 @@ import AbstractView from '../framework/view/abstract-view';
 import dayjs from 'dayjs';
 
 
-const createEventDateTemplate = ({duration: {start}}) => {
-  const className = dayjs(start).format('YYYY-MM-DD');
-  const innerText = dayjs(start).format('MMM DD');
+const createEventDateTemplate = ({dateFrom}) => {
+  const className = dayjs(dateFrom).format('YYYY-MM-DD');
+  const innerText = dayjs(dateFrom).format('MMM DD');
 
   return `<time class="event__date" datetime="${className}">${innerText}</time>`;
 };
 
 
-const createEventScheduleTemplate = ({duration: {start, end}}) => {
-  const startTime = dayjs(start);
-  const endTime = dayjs(end);
+const createEventScheduleTemplate = ({dateFrom, dateTo}) => {
+  const startTime = dayjs(dateFrom);
+  const endTime = dayjs(dateTo);
 
   const diffInMinutes = endTime.diff(startTime, 'minute');
   const hours = Math.floor(diffInMinutes / 60);
@@ -43,7 +43,7 @@ const createOffersTemplate = (offers) =>
 
 
 const createTripEventTemplate = (tripEvent) => {
-  const {type, offers, destination: {name: destinationName}, price, isFavorite} = tripEvent;
+  const {type, offers, destination: {name: destinationName}, basePrice, isFavorite} = tripEvent;
   const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
 
   return (
@@ -56,7 +56,7 @@ const createTripEventTemplate = (tripEvent) => {
         <h3 class="event__title">${type} ${destinationName}</h3>
         ${createEventScheduleTemplate(tripEvent)}
         <p class="event__price">
-          &euro;&nbsp;<span class="event__price-value">${price}</span>
+          &euro;&nbsp;<span class="event__price-value">${basePrice}</span>
         </p>
         <h4 class="visually-hidden">Offers:</h4>
         <ul class="event__selected-offers">

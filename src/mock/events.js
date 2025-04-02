@@ -198,7 +198,6 @@ const mockEventDestinations = [
   }
 ];
 
-
 const mockEventOffers = [
   {
     'type': 'taxi',
@@ -405,7 +404,6 @@ const mockEventOffers = [
     ]
   }
 ];
-
 
 const mockEvents = [
   {

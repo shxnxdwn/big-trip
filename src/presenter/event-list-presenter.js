@@ -67,14 +67,15 @@ export default class EventListPresenter {
 
 
   #renderEventList() {
+    render(new SortView(), this.#container);
+
+    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListComponent.element);
+
     render(this.#eventListComponent, this.#container);
     if (this.#eventList.length === 0) {
       render(new EmptyEventListView, this.#eventListComponent.element);
       return;
     }
-
-    render(new SortView(), this.#container);
-    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListComponent.element);
 
     for (let i = 1; i < this.#eventList.length; i++) {
       this.#renderEvent(this.#eventList[i]);

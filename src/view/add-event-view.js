@@ -95,9 +95,9 @@ const createEventDestinationTemplate = ({type, destination}) => `
   </div>`;
 
 
-const createEventDurationTemplate = ({duration: {start, end}}) => {
-  const startTime = dayjs(start).format('DD/MM/YY HH:mm');
-  const endTime = dayjs(end).format('DD/MM/YY HH:mm');
+const createEventDurationTemplate = ({dateFrom, dateTo}) => {
+  const startTime = dayjs(dateFrom).format('DD/MM/YY HH:mm');
+  const endTime = dayjs(dateTo).format('DD/MM/YY HH:mm');
 
   return `
     <div class="event__field-group  event__field-group--time">
@@ -112,11 +112,11 @@ const createEventDurationTemplate = ({duration: {start, end}}) => {
 };
 
 
-const createEventPriceTemplate = ({price}) => `
+const createEventPriceTemplate = ({basePrice}) => `
   <div class="event__field-group  event__field-group--price">
     <label class="event__label" for="event-price-1">
       <span class="visually-hidden">Price</span>
-      &euro; ${price}
+      &euro; ${basePrice}
     </label>
     <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="">
   </div>
