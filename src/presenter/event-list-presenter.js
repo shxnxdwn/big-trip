@@ -3,7 +3,7 @@ import EditEventView from '../view/edit-event-view';
 import SortView from '../view/sort-view';
 import TripEventView from '../view/trip-event-view';
 import EventListView from '../view/event-list-view';
-import {render} from '../framework/render';
+import {render, replace} from '../framework/render';
 
 
 export default class EventListPresenter {
@@ -22,17 +22,50 @@ export default class EventListPresenter {
 
     render(new SortView(), this.#container);
     render(this.#eventListElement, this.#container);
-    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListElement.element);
-    render(new EditEventView({tripEvent: this.#eventList[1]}), this.#eventListElement.element);
+    // render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListElement.element);
 
-    for (let i = 2; i < this.#eventList.length; i++) {
+    for (let i = 0; i < this.#eventList.length; i++) {
       this.#renderEvent(this.#eventList[i]);
     }
   }
 
   #renderEvent(tripEvent) {
-    const tripEventElement = new TripEventView({tripEvent});
+    const escapeKeyDownHandler = (evt) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        closeEditForm();
+        document.removeEventListener('keydown', escapeKeyDownHandler);
+      }
+    };
 
-    render(tripEventElement, this.#eventListElement.element);
+    const tripEventComponent = new TripEventView({
+      tripEvent,
+      onEditClick: () => {
+        openEditForm();
+        document.addEventListener('keydown', escapeKeyDownHandler);
+      }
+    });
+
+    const editEventComponent = new EditEventView({
+      tripEvent,
+      onFormSubmit: () => {
+        closeEditForm();
+        document.removeEventListener('keydown', escapeKeyDownHandler);
+      },
+      onClickCloseButton: () => {
+        closeEditForm();
+        document.removeEventListener('keydown', escapeKeyDownHandler);
+      }
+    });
+
+    function openEditForm () {
+      replace(editEventComponent, tripEventComponent);
+    }
+
+    function closeEditForm () {
+      replace(tripEventComponent, editEventComponent);
+    }
+
+    render(tripEventComponent, this.#eventListElement.element);
   }
 }

@@ -181,13 +181,30 @@ const createEditEventTemplate = (tripEvent) => `
 
 export default class EditEventView extends AbstractView {
   #tripEvent = null;
+  #handleFormSubmit = null;
+  #handleCloseButtonClick = null;
 
-  constructor({tripEvent}) {
+  constructor({tripEvent, onFormSubmit, onClickCloseButton}) {
     super();
     this.#tripEvent = tripEvent;
+    this.#handleFormSubmit = onFormSubmit;
+    this.#handleCloseButtonClick = onClickCloseButton;
+
+    this.element.querySelector('.event--edit').addEventListener('submit', this.#clickSubmitHandler);
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickCloseButtonHandler);
   }
 
   get template() {
     return createEditEventTemplate(this.#tripEvent);
   }
+
+  #clickSubmitHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleFormSubmit();
+  };
+
+  #clickCloseButtonHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleCloseButtonClick();
+  };
 }
