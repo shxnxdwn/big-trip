@@ -1,13 +1,14 @@
+import dayjs from 'dayjs';
+
 const capitalizeFirstLetter = (string) => string.at(0).toUpperCase() + string.slice(1);
 
 const getRandomArrayElement = (items) => items[Math.floor(Math.random() * items.length)];
 
-const filterList = {
-  // TODO: make filters
-  everything: (eventTripList) => eventTripList,
-  future: (eventTripList) => eventTripList.filter(() => 0),
-  present: (eventTripList) => eventTripList.filter(() => 0),
-  past: (eventTripList) => eventTripList.filter(() => 0)
+const FilterList = {
+  EVERYTHING: (eventTripList) => eventTripList,
+  FUTURE: (eventTripList) => eventTripList.filter((event) => dayjs(event.dateFrom).isAfter(dayjs())),
+  PRESENT: (eventTripList) => eventTripList.filter((event) => dayjs(event.dateFrom).isBefore(dayjs()) && dayjs(event.dateTo).isAfter(dayjs())),
+  PAST: (eventTripList) => eventTripList.filter((event) => dayjs(event.dateTo).isBefore(dayjs()))
 };
 
-export {capitalizeFirstLetter, getRandomArrayElement, filterList};
+export {capitalizeFirstLetter, getRandomArrayElement, FilterList};
