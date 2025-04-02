@@ -1,7 +1,14 @@
-const EVENTS_COUNT = 9;
+const EVENTS_COUNT = 0;
 
 const FILTER_TYPES = ['everything', 'future', 'present', 'past'];
 const SORT_TYPES = ['day', 'event', 'time', 'price', 'offers'];
+
+const EmptyEventListMessages = {
+  EVERYTHING: 'Click New Event to create your first point',
+  PAST: 'There are no past events now',
+  PRESENT: 'There are no present events now',
+  FUTURE: 'There are no future events now'
+};
 
 
 const BLANK_EVENT = {
@@ -47,4 +54,4 @@ const BLANK_EVENT = {
 };
 
 
-export {EVENTS_COUNT, BLANK_EVENT, FILTER_TYPES, SORT_TYPES};
+export {EVENTS_COUNT, BLANK_EVENT, FILTER_TYPES, SORT_TYPES, EmptyEventListMessages};

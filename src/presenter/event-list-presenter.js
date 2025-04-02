@@ -3,6 +3,7 @@ import EditEventView from '../view/edit-event-view';
 import SortView from '../view/sort-view';
 import TripEventView from '../view/trip-event-view';
 import EventListView from '../view/event-list-view';
+import EmptyEventListView from '../view/empty-event-list-view';
 import {render, replace} from '../framework/render';
 
 
@@ -10,7 +11,7 @@ export default class EventListPresenter {
   #container = null;
   #eventListModel = null;
   #eventList = [];
-  #eventListElement = new EventListView();
+  #eventListComponent = new EventListView();
 
   constructor({container, eventListModel}) {
     this.#container = container;
@@ -61,14 +62,19 @@ export default class EventListPresenter {
       replace(tripEventComponent, editEventComponent);
     }
 
-    render(tripEventComponent, this.#eventListElement.element);
+    render(tripEventComponent, this.#eventListComponent.element);
   }
 
 
   #renderEventList() {
+    render(this.#eventListComponent, this.#container);
+    if (this.#eventList.length === 0) {
+      render(new EmptyEventListView, this.#eventListComponent.element);
+      return;
+    }
+
     render(new SortView(), this.#container);
-    render(this.#eventListElement, this.#container);
-    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListElement.element);
+    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListComponent.element);
 
     for (let i = 1; i < this.#eventList.length; i++) {
       this.#renderEvent(this.#eventList[i]);
