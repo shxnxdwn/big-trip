@@ -189,13 +189,16 @@ export default class EditEventView extends AbstractView {
     this.#tripEvent = tripEvent;
     this.#handleFormSubmit = onFormSubmit;
     this.#handleCloseButtonClick = onClickCloseButton;
-
-    this.element.querySelector('.event--edit').addEventListener('submit', this.#clickSubmitHandler);
-    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickCloseButtonHandler);
+    this.#setEventListeners();
   }
 
   get template() {
     return createEditEventTemplate(this.#tripEvent);
+  }
+
+  #setEventListeners() {
+    this.element.querySelector('.event--edit').addEventListener('submit', this.#clickSubmitHandler);
+    this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickCloseButtonHandler);
   }
 
   #clickSubmitHandler = (evt) => {
