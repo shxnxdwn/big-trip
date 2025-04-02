@@ -17,17 +17,12 @@ export default class EventListPresenter {
     this.#eventListModel = eventListModel;
   }
 
+
   init() {
     this.#eventList = [...this.#eventListModel.eventList];
-
-    render(new SortView(), this.#container);
-    render(this.#eventListElement, this.#container);
-    // render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListElement.element);
-
-    for (let i = 0; i < this.#eventList.length; i++) {
-      this.#renderEvent(this.#eventList[i]);
-    }
+    this.#renderEventList();
   }
+
 
   #renderEvent(tripEvent) {
     const escapeKeyDownHandler = (evt) => {
@@ -67,5 +62,16 @@ export default class EventListPresenter {
     }
 
     render(tripEventComponent, this.#eventListElement.element);
+  }
+
+
+  #renderEventList() {
+    render(new SortView(), this.#container);
+    render(this.#eventListElement, this.#container);
+    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListElement.element);
+
+    for (let i = 1; i < this.#eventList.length; i++) {
+      this.#renderEvent(this.#eventList[i]);
+    }
   }
 }
