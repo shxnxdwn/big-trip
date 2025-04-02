@@ -415,11 +415,7 @@ const mockEvents = [
     'dateTo': '2025-03-26T03:32:13.458Z',
     'destination': '4d38e92a-43a1-41a7-84e3-a72df65c0fc1',
     'isFavorite': false,
-    'offers': [
-      '65ad3e98-7e9b-4b0e-b5c7-b99b8ca2ba5e',
-      '9eda0d0c-629c-48fd-ad5c-e6b8d04b33c9',
-      '77b98e8b-3864-4d45-bf12-61cca572d898'
-    ],
+    'offers': [],
     'type': 'taxi'
   },
   {
@@ -429,9 +425,7 @@ const mockEvents = [
     'dateTo': '2025-03-27T12:18:13.458Z',
     'destination': '295a89ae-a73d-4f99-90a3-8c23a40644c2',
     'isFavorite': true,
-    'offers': [
-      '87d66b91-7380-4aff-abe7-6387a8543f83'
-    ],
+    'offers': [],
     'type': 'check-in'
   },
   {
@@ -441,11 +435,7 @@ const mockEvents = [
     'dateTo': '2025-03-29T20:30:13.458Z',
     'destination': '1d41bf55-1d66-4320-be85-51f0af37c840',
     'isFavorite': false,
-    'offers': [
-      '48633b5d-92c2-485a-b550-f1431368c3c8',
-      '53f01dbc-3ea5-44f2-b2f0-86207aeba414',
-      '7b38d71b-8358-49ce-abb9-402d286f7f64'
-    ],
+    'offers': [],
     'type': 'bus'
   },
   {
@@ -455,12 +445,7 @@ const mockEvents = [
     'dateTo': '2025-03-30T22:28:13.458Z',
     'destination': '295a89ae-a73d-4f99-90a3-8c23a40644c2',
     'isFavorite': true,
-    'offers': [
-      '8dc9d21e-771c-45e0-b66b-922db64b3771',
-      '65ad3e98-7e9b-4b0e-b5c7-b99b8ca2ba5e',
-      '9eda0d0c-629c-48fd-ad5c-e6b8d04b33c9',
-      '77b98e8b-3864-4d45-bf12-61cca572d898'
-    ],
+    'offers': [],
     'type': 'taxi'
   },
   {
@@ -470,10 +455,7 @@ const mockEvents = [
     'dateTo': '2025-04-01T23:55:13.458Z',
     'destination': 'c136716b-8b82-41d4-9994-b4b0826579ea',
     'isFavorite': true,
-    'offers': [
-      '42152374-00c4-4c4c-848d-21fd356d700b',
-      '9cf1acc4-049e-4252-9bb3-a9e10523503d'
-    ],
+    'offers': [],
     'type': 'restaurant'
   },
   {
@@ -493,14 +475,7 @@ const mockEvents = [
     'dateTo': '2025-04-07T00:41:13.458Z',
     'destination': '1d41bf55-1d66-4320-be85-51f0af37c840',
     'isFavorite': true,
-    'offers': [
-      '1a8bd9da-5d38-49ed-bf14-49f771f993ca',
-      'd52d24ed-d5f9-477c-86a6-6b4cd0eba8ec',
-      '6a8d93f4-0e16-4b98-a7c1-d2e344b6ec23',
-      '4c3021b0-f10d-4cad-8064-0706e8d6716c',
-      'e0cc23fb-089e-46df-b757-515c5c0406f4',
-      '49b531fd-5673-4d9c-8fe3-49fc29ecc5bf'
-    ],
+    'offers': [],
     'type': 'flight'
   },
   {
@@ -510,11 +485,7 @@ const mockEvents = [
     'dateTo': '2025-04-10T09:39:13.458Z',
     'destination': '758a6e03-58d6-4a61-8ecb-4ce5acec54cc',
     'isFavorite': false,
-    'offers': [
-      '65ad3e98-7e9b-4b0e-b5c7-b99b8ca2ba5e',
-      '9eda0d0c-629c-48fd-ad5c-e6b8d04b33c9',
-      '77b98e8b-3864-4d45-bf12-61cca572d898'
-    ],
+    'offers': [],
     'type': 'taxi'
   },
   {
@@ -524,12 +495,7 @@ const mockEvents = [
     'dateTo': '2025-04-12T22:33:13.458Z',
     'destination': '1d41bf55-1d66-4320-be85-51f0af37c840',
     'isFavorite': false,
-    'offers': [
-      'a49085c5-05c6-48ae-924f-9d86d2f3e7e9',
-      '3ecb17cd-a1d5-4e35-84ad-e77150617551',
-      '00d97128-b49c-4226-9ed5-811a7609319e',
-      '87d66b91-7380-4aff-abe7-6387a8543f83'
-    ],
+    'offers': [],
     'type': 'check-in'
   },
   {
@@ -579,14 +545,7 @@ const mockEvents = [
     'dateTo': '2025-04-27T15:35:13.458Z',
     'destination': 'a7eada62-eed0-4797-8f47-8883da42bd5a',
     'isFavorite': true,
-    'offers': [
-      '1a8bd9da-5d38-49ed-bf14-49f771f993ca',
-      'd52d24ed-d5f9-477c-86a6-6b4cd0eba8ec',
-      '6a8d93f4-0e16-4b98-a7c1-d2e344b6ec23',
-      '4c3021b0-f10d-4cad-8064-0706e8d6716c',
-      'e0cc23fb-089e-46df-b757-515c5c0406f4',
-      '49b531fd-5673-4d9c-8fe3-49fc29ecc5bf'
-    ],
+    'offers': [],
     'type': 'flight'
   },
   {
@@ -606,9 +565,7 @@ const mockEvents = [
     'dateTo': '2025-05-02T10:21:13.458Z',
     'destination': '295a89ae-a73d-4f99-90a3-8c23a40644c2',
     'isFavorite': true,
-    'offers': [
-      'e8581aef-bdd5-437b-8e90-8fe8fb3229f3'
-    ],
+    'offers': [],
     'type': 'drive'
   },
   {
@@ -618,14 +575,7 @@ const mockEvents = [
     'dateTo': '2025-05-04T23:41:13.458Z',
     'destination': '4d38e92a-43a1-41a7-84e3-a72df65c0fc1',
     'isFavorite': false,
-    'offers': [
-      '4153779e-f470-4fc9-8717-7ea588a6ea95',
-      '275145d2-0644-4368-9229-efd3348dc11c',
-      'b7982da3-f53e-41f6-8312-90f0f300221c',
-      '90b7b454-e9a9-4eb3-9c7e-d34c7fe33511',
-      'a068ce5e-3531-40e7-a811-49aa005a8205',
-      '5852643e-a27a-4b9e-aff1-e270a1aab1c7'
-    ],
+    'offers': [],
     'type': 'ship'
   },
   {
@@ -635,10 +585,7 @@ const mockEvents = [
     'dateTo': '2025-05-07T07:06:13.458Z',
     'destination': 'c136716b-8b82-41d4-9994-b4b0826579ea',
     'isFavorite': true,
-    'offers': [
-      '42152374-00c4-4c4c-848d-21fd356d700b',
-      '9cf1acc4-049e-4252-9bb3-a9e10523503d'
-    ],
+    'offers': [],
     'type': 'restaurant'
   },
   {
@@ -648,13 +595,7 @@ const mockEvents = [
     'dateTo': '2025-05-09T17:45:13.458Z',
     'destination': 'c136716b-8b82-41d4-9994-b4b0826579ea',
     'isFavorite': true,
-    'offers': [
-      '0f830bcc-3758-4433-b028-e8e8a97efce5',
-      'a49085c5-05c6-48ae-924f-9d86d2f3e7e9',
-      '3ecb17cd-a1d5-4e35-84ad-e77150617551',
-      '00d97128-b49c-4226-9ed5-811a7609319e',
-      '87d66b91-7380-4aff-abe7-6387a8543f83'
-    ],
+    'offers': [],
     'type': 'check-in'
   },
   {
@@ -664,12 +605,7 @@ const mockEvents = [
     'dateTo': '2025-05-12T21:31:13.458Z',
     'destination': '2c055b36-f66c-481d-9f02-6ed748eb9106',
     'isFavorite': true,
-    'offers': [
-      '8dc9d21e-771c-45e0-b66b-922db64b3771',
-      '65ad3e98-7e9b-4b0e-b5c7-b99b8ca2ba5e',
-      '9eda0d0c-629c-48fd-ad5c-e6b8d04b33c9',
-      '77b98e8b-3864-4d45-bf12-61cca572d898'
-    ],
+    'offers': [],
     'type': 'taxi'
   },
   {
@@ -679,11 +615,7 @@ const mockEvents = [
     'dateTo': '2025-05-15T12:03:13.458Z',
     'destination': '295a89ae-a73d-4f99-90a3-8c23a40644c2',
     'isFavorite': false,
-    'offers': [
-      '48633b5d-92c2-485a-b550-f1431368c3c8',
-      '53f01dbc-3ea5-44f2-b2f0-86207aeba414',
-      '7b38d71b-8358-49ce-abb9-402d286f7f64'
-    ],
+    'offers': [],
     'type': 'bus'
   },
   {
@@ -703,9 +635,7 @@ const mockEvents = [
     'dateTo': '2025-05-19T23:47:13.458Z',
     'destination': '4d38e92a-43a1-41a7-84e3-a72df65c0fc1',
     'isFavorite': false,
-    'offers': [
-      '7b38d71b-8358-49ce-abb9-402d286f7f64'
-    ],
+    'offers': [],
     'type': 'bus'
   },
   {
@@ -715,14 +645,7 @@ const mockEvents = [
     'dateTo': '2025-05-21T19:48:13.458Z',
     'destination': 'a7eada62-eed0-4797-8f47-8883da42bd5a',
     'isFavorite': false,
-    'offers': [
-      '4153779e-f470-4fc9-8717-7ea588a6ea95',
-      '275145d2-0644-4368-9229-efd3348dc11c',
-      'b7982da3-f53e-41f6-8312-90f0f300221c',
-      '90b7b454-e9a9-4eb3-9c7e-d34c7fe33511',
-      'a068ce5e-3531-40e7-a811-49aa005a8205',
-      '5852643e-a27a-4b9e-aff1-e270a1aab1c7'
-    ],
+    'offers': [],
     'type': 'ship'
   },
   {
@@ -741,12 +664,7 @@ const mockEvents = [
 export function getTripEventsData() {
   return mockEvents.map((event) => {
     const destination = mockEventDestinations.find((dest) => dest.id === event.destination);
-    const offersByType = mockEventOffers.find((offer) => offer.type === event.type)?.offers || [];
-
-    const offers = offersByType.map((offer) => ({
-      ...offer,
-      isChecked: event.offers.includes(offer.id)
-    }));
+    const offers = mockEventOffers.find((offer) => offer.type === event.type)?.offers || [];
 
     return {
       ...event,

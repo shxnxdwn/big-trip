@@ -1,5 +1,3 @@
-const EVENTS_COUNT = 10;
-
 const FILTER_TYPES = ['everything', 'future', 'present', 'past'];
 const SORT_TYPES = ['day', 'event', 'time', 'price', 'offers'];
 
@@ -10,7 +8,7 @@ const EmptyEventListMessages = {
   FUTURE: 'There are no future events now'
 };
 
-
+// TODO: remove or edit blanc event
 const BLANK_EVENT = {
   type: 'flight',
   destination: {
@@ -54,4 +52,4 @@ const BLANK_EVENT = {
 };
 
 
-export {EVENTS_COUNT, BLANK_EVENT, FILTER_TYPES, SORT_TYPES, EmptyEventListMessages};
+export {BLANK_EVENT, FILTER_TYPES, SORT_TYPES, EmptyEventListMessages};
