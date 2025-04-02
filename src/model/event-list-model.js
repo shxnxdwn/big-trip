@@ -1,9 +1,8 @@
-import {getRandomTripEvent} from '../mock/tasks';
-import {EVENTS_COUNT} from '../constants';
+import {getTripEventsData} from '../mock/events';
 
 
 export default class EventListModel {
-  #eventList = Array.from({length: EVENTS_COUNT}, getRandomTripEvent);
+  #eventList = getTripEventsData();
 
   get eventList() {
     return this.#eventList;

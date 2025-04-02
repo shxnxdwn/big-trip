@@ -1,9 +1,3 @@
-import {getRandomArrayElement} from '../utils';
-
-
-const mockEventTypes = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
-
-
 const mockEventDestinations = [
   {
     'id': '295a89ae-a73d-4f99-90a3-8c23a40644c2',
@@ -743,4 +737,21 @@ const mockEvents = [
   }
 ];
 
-export const getRandomTripEvent = () => getRandomArrayElement(mockEvents);
+
+export function getTripEventsData() {
+  return mockEvents.map((event) => {
+    const destination = mockEventDestinations.find((dest) => dest.id === event.destination);
+    const offersByType = mockEventOffers.find((offer) => offer.type === event.type)?.offers || [];
+
+    const offers = offersByType.map((offer) => ({
+      ...offer,
+      isChecked: event.offers.includes(offer.id)
+    }));
+
+    return {
+      ...event,
+      destination,
+      offers
+    };
+  });
+}
