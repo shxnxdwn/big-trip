@@ -72,6 +72,7 @@ export default class EventListPresenter {
     render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListComponent.element);
 
     render(this.#eventListComponent, this.#container);
+
     if (this.#eventList.length === 0) {
       render(new EmptyEventListView, this.#eventListComponent.element);
       return;
