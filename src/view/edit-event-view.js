@@ -150,17 +150,17 @@ const createEventDestinationInfoTemplate = ({destination: {description}}) => `
 `;
 
 
-const createEditEventTemplate = (tripEvent) => `
+const createEditEventTemplate = (event) => `
 <li class="trip-events__item">
   <form class="event event--edit" action="#" method="post">
     <header class="event__header">
-      ${createEventTypeTemplate(tripEvent)}
+      ${createEventTypeTemplate(event)}
 
-      ${createEventDestinationTemplate(tripEvent)}
+      ${createEventDestinationTemplate(event)}
 
-      ${createEventDurationTemplate(tripEvent)}
+      ${createEventDurationTemplate(event)}
 
-      ${createEventPriceTemplate(tripEvent)}
+      ${createEventPriceTemplate(event)}
 
       <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
       <button class="event__reset-btn" type="reset">Delete</button>
@@ -170,9 +170,9 @@ const createEditEventTemplate = (tripEvent) => `
     </header>
 
     <section class="event__details">
-      ${createEventOffersTemplate(tripEvent)}
+      ${createEventOffersTemplate(event)}
 
-      ${createEventDestinationInfoTemplate(tripEvent)}
+      ${createEventDestinationInfoTemplate(event)}
     </section>
   </form>
 </li>
@@ -180,20 +180,20 @@ const createEditEventTemplate = (tripEvent) => `
 
 
 export default class EditEventView extends AbstractView {
-  #tripEvent = null;
+  #event = null;
   #handleFormSubmit = null;
   #handleCloseButtonClick = null;
 
-  constructor({tripEvent, onFormSubmit, onClickCloseButton}) {
+  constructor({event, onFormSubmit, onClickCloseButton}) {
     super();
-    this.#tripEvent = tripEvent;
+    this.#event = event;
     this.#handleFormSubmit = onFormSubmit;
     this.#handleCloseButtonClick = onClickCloseButton;
     this.#setEventListeners();
   }
 
   get template() {
-    return createEditEventTemplate(this.#tripEvent);
+    return createEditEventTemplate(this.#event);
   }
 
   #setEventListeners() {

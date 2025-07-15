@@ -42,19 +42,19 @@ const createOffersTemplate = (offers) =>
   `).join('');
 
 
-const createTripEventTemplate = (tripEvent) => {
-  const {type, offers, destination: {name: destinationName}, basePrice, isFavorite} = tripEvent;
+const createEventTemplate = (event) => {
+  const {type, offers, destination: {name: destinationName}, basePrice, isFavorite} = event;
   const favoriteClassName = isFavorite ? 'event__favorite-btn--active' : '';
 
   return (
     `<li class="trip-events__item">
       <div class="event">
-        ${createEventDateTemplate(tripEvent)}
+        ${createEventDateTemplate(event)}
         <div class="event__type">
           <img class="event__type-icon" width="42" height="42" src="img/icons/${type}.png" alt="Event type icon">
         </div>
         <h3 class="event__title">${type} ${destinationName}</h3>
-        ${createEventScheduleTemplate(tripEvent)}
+        ${createEventScheduleTemplate(event)}
         <p class="event__price">
           &euro;&nbsp;<span class="event__price-value">${basePrice}</span>
         </p>
@@ -76,19 +76,19 @@ const createTripEventTemplate = (tripEvent) => {
 };
 
 
-export default class TripEventView extends AbstractView {
-  #tripEvent = null;
+export default class EventView extends AbstractView {
+  #event = null;
   #handleEditClick = null;
 
-  constructor({tripEvent, onEditClick}) {
+  constructor({event, onEditClick}) {
     super();
-    this.#tripEvent = tripEvent;
+    this.#event = event;
     this.#handleEditClick = onEditClick;
     this.#setEventListeners();
   }
 
   get template() {
-    return createTripEventTemplate(this.#tripEvent);
+    return createEventTemplate(this.#event);
   }
 
   #setEventListeners() {

@@ -157,26 +157,26 @@ const createEventDestinationInfoTemplate = ({destination: {description, pictures
 `;
 
 
-const createAddEventTemplate = (tripEvent) => `
+const createAddEventTemplate = (event) => `
   <li class="trip-events__item">
     <form class="event event--edit" action="#" method="post">
       <header class="event__header">
-        ${createEventTypeTemplate(tripEvent)}
+        ${createEventTypeTemplate(event)}
 
-        ${createEventDestinationTemplate(tripEvent)}
+        ${createEventDestinationTemplate(event)}
 
-        ${createEventDurationTemplate(tripEvent)}
+        ${createEventDurationTemplate(event)}
 
-        ${createEventPriceTemplate(tripEvent)}
+        ${createEventPriceTemplate(event)}
 
         <button class="event__save-btn  btn  btn--blue" type="submit">Save</button>
         <button class="event__reset-btn" type="reset">Cancel</button>
       </header>
 
       <section class="event__details">
-        ${createEventOffersTemplate(tripEvent)}
+        ${createEventOffersTemplate(event)}
 
-        ${createEventDestinationInfoTemplate(tripEvent)}
+        ${createEventDestinationInfoTemplate(event)}
       </section>
     </form>
   </li>
@@ -184,14 +184,14 @@ const createAddEventTemplate = (tripEvent) => `
 
 
 export default class AddEventView extends AbstractView {
-  #tripEvent = null;
+  #event = null;
 
-  constructor({tripEvent = BLANK_EVENT}) {
+  constructor({event = BLANK_EVENT}) {
     super();
-    this.#tripEvent = tripEvent;
+    this.#event = event;
   }
 
   get template() {
-    return createAddEventTemplate(this.#tripEvent);
+    return createAddEventTemplate(this.#event);
   }
 }

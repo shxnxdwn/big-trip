@@ -1,10 +1,8 @@
-import AddEventView from '../view/add-event-view';
-import EditEventView from '../view/edit-event-view';
 import SortView from '../view/sort-view';
-import TripEventView from '../view/trip-event-view';
 import EventListView from '../view/event-list-view';
 import EmptyEventListView from '../view/empty-event-list-view';
-import {render, replace} from '../framework/render';
+import EventPresenter from './event-presenter';
+import {render} from '../framework/render';
 
 
 export default class EventListPresenter {
@@ -12,6 +10,9 @@ export default class EventListPresenter {
   #eventListModel = null;
   #eventList = [];
   #eventListComponent = new EventListView();
+  #sortComponent = new SortView();
+  #emptyEventListComponent = new EmptyEventListView();
+
 
   constructor({container, eventListModel}) {
     this.#container = container;
@@ -25,60 +26,35 @@ export default class EventListPresenter {
   }
 
 
-  #renderEvent(tripEvent) {
-    const escapeKeyDownHandler = (evt) => {
-      if (evt.key === 'Escape') {
-        evt.preventDefault();
-        closeEditForm();
-        document.removeEventListener('keydown', escapeKeyDownHandler);
-      }
-    };
+  #renderSort() {
+    render(this.#sortComponent, this.#container);
+  }
 
-    const tripEventComponent = new TripEventView({
-      tripEvent,
-      onEditClick: () => {
-        openEditForm();
-        document.addEventListener('keydown', escapeKeyDownHandler);
-      }
+
+  #renderEmptyList() {
+    render(this.#emptyEventListComponent, this.#eventListComponent.element);
+  }
+
+
+  #renderEvent(event) {
+    const eventPresenter = new EventPresenter({
+      container: this.#eventListComponent.element
     });
 
-    const editEventComponent = new EditEventView({
-      tripEvent,
-      onFormSubmit: () => {
-        closeEditForm();
-        document.removeEventListener('keydown', escapeKeyDownHandler);
-      },
-      onClickCloseButton: () => {
-        closeEditForm();
-        document.removeEventListener('keydown', escapeKeyDownHandler);
-      }
-    });
-
-    function openEditForm () {
-      replace(editEventComponent, tripEventComponent);
-    }
-
-    function closeEditForm () {
-      replace(tripEventComponent, editEventComponent);
-    }
-
-    render(tripEventComponent, this.#eventListComponent.element);
+    eventPresenter.init(event);
   }
 
 
   #renderEventList() {
-    render(new SortView(), this.#container);
-
-    render(new AddEventView({tripEvent: this.#eventList[0]}), this.#eventListComponent.element);
-
+    this.#renderSort();
     render(this.#eventListComponent, this.#container);
 
     if (this.#eventList.length === 0) {
-      render(new EmptyEventListView, this.#eventListComponent.element);
+      this.#renderEmptyList();
       return;
     }
 
-    for (let i = 1; i < this.#eventList.length; i++) {
+    for (let i = 0; i < this.#eventList.length; i++) {
       this.#renderEvent(this.#eventList[i]);
     }
   }
