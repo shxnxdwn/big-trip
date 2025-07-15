@@ -8,10 +8,12 @@ export default class EventPresenter {
   #event = null;
   #eventComponent = null;
   #editEventComponent = null;
+  #handleDataChange = null;
 
 
-  constructor({container}) {
+  constructor({container, onDataChange}) {
     this.#container = container;
+    this.#handleDataChange = onDataChange;
   }
 
 
@@ -21,24 +23,17 @@ export default class EventPresenter {
     const prevEventComponent = this.#eventComponent;
     const prevEditEventComponent = this.#editEventComponent;
 
+
     this.#eventComponent = new EventView({
-      event,
-      onEditClick: () => {
-        this.#openEditForm();
-        document.addEventListener('keydown', this.#escapeKeyDownHandler);
-      }
+      event: event,
+      onEditClick: this.#onEditClick,
+      onFavoriteClick: this.#handleFavoriteClick
     });
 
     this.#editEventComponent = new EditEventView({
-      event,
-      onFormSubmit: () => {
-        this.#closeEditForm();
-        document.removeEventListener('keydown', this.#escapeKeyDownHandler);
-      },
-      onClickCloseButton: () => {
-        this.#closeEditForm();
-        document.removeEventListener('keydown', this.#escapeKeyDownHandler);
-      }
+      event: event,
+      onFormSubmit: this.#onFormSubmit,
+      onClickCloseButton: this.#onClickCloseButton
     });
 
 
@@ -74,11 +69,25 @@ export default class EventPresenter {
     }
   };
 
-  #openEditForm() {
-    replace(this.#editEventComponent, this.#eventComponent);
-  }
+  #onEditClick = () => {
+    this.#openEditForm();
+    document.addEventListener('keydown', this.#escapeKeyDownHandler);
+  };
 
-  #closeEditForm() {
-    replace(this.#eventComponent, this.#editEventComponent);
-  }
+  #onFormSubmit = () => {
+    this.#closeEditForm();
+    document.removeEventListener('keydown', this.#escapeKeyDownHandler);
+  };
+
+
+  #onClickCloseButton = () => {
+    this.#closeEditForm();
+    document.removeEventListener('keydown', this.#escapeKeyDownHandler);
+  };
+
+  #openEditForm = () => replace(this.#editEventComponent, this.#eventComponent);
+
+  #closeEditForm = () => replace(this.#eventComponent, this.#editEventComponent);
+
+  #handleFavoriteClick = () => this.#handleDataChange({...this.#event, isFavorite: !this.#event.isFavorite});
 }
