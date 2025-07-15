@@ -3,17 +3,26 @@ import EditEventView from '../view/edit-event-view';
 import {remove, render, replace} from '../framework/render';
 
 
+const Mode = {
+  DEFAULT: 'DEFAULT',
+  EDITING: 'EDITING'
+};
+
+
 export default class EventPresenter {
   #container = null;
   #event = null;
+  #mode = Mode.DEFAULT;
   #eventComponent = null;
   #editEventComponent = null;
   #handleDataChange = null;
+  #handleModeChange = null;
 
 
-  constructor({container, onDataChange}) {
+  constructor({container, onDataChange, onModeChange}) {
     this.#container = container;
     this.#handleDataChange = onDataChange;
+    this.#handleModeChange = onModeChange;
   }
 
 
@@ -26,14 +35,14 @@ export default class EventPresenter {
 
     this.#eventComponent = new EventView({
       event: event,
-      onEditClick: this.#onEditClick,
+      onEditClick: this.#openEditForm,
       onFavoriteClick: this.#handleFavoriteClick
     });
 
     this.#editEventComponent = new EditEventView({
       event: event,
-      onFormSubmit: this.#onFormSubmit,
-      onClickCloseButton: this.#onClickCloseButton
+      onFormSubmit: this.#closeEditForm,
+      onClickCloseButton: this.#closeEditForm
     });
 
 
@@ -42,11 +51,11 @@ export default class EventPresenter {
       return;
     }
 
-    if (this.#container.contains(prevEventComponent.element)) {
+    if (this.#mode === Mode.DEFAULT) {
       replace(this.#eventComponent, prevEventComponent);
     }
 
-    if (this.#container.contains(prevEditEventComponent.element)) {
+    if (this.#mode === Mode.EDITING) {
       replace(this.#eventComponent, prevEditEventComponent);
     }
 
@@ -61,6 +70,13 @@ export default class EventPresenter {
   }
 
 
+  resetView() {
+    if(this.#mode !== Mode.DEFAULT) {
+      this.#closeEditForm();
+    }
+  }
+
+
   #escapeKeyDownHandler = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
@@ -69,25 +85,19 @@ export default class EventPresenter {
     }
   };
 
-  #onEditClick = () => {
-    this.#openEditForm();
+
+  #openEditForm = () => {
+    replace(this.#editEventComponent, this.#eventComponent);
     document.addEventListener('keydown', this.#escapeKeyDownHandler);
+    this.#handleModeChange();
+    this.#mode = Mode.EDITING;
   };
 
-  #onFormSubmit = () => {
-    this.#closeEditForm();
+  #closeEditForm = () => {
+    replace(this.#eventComponent, this.#editEventComponent);
     document.removeEventListener('keydown', this.#escapeKeyDownHandler);
+    this.#mode = Mode.DEFAULT;
   };
-
-
-  #onClickCloseButton = () => {
-    this.#closeEditForm();
-    document.removeEventListener('keydown', this.#escapeKeyDownHandler);
-  };
-
-  #openEditForm = () => replace(this.#editEventComponent, this.#eventComponent);
-
-  #closeEditForm = () => replace(this.#eventComponent, this.#editEventComponent);
 
   #handleFavoriteClick = () => this.#handleDataChange({...this.#event, isFavorite: !this.#event.isFavorite});
 }

@@ -41,7 +41,8 @@ export default class EventListPresenter {
   #renderEvent(event) {
     const eventPresenter = new EventPresenter({
       container: this.#eventListComponent.element,
-      onDataChange: this.#handleEventChange
+      onDataChange: this.#handleEventChange,
+      onModeChange: this.#handleModeChange
     });
 
     this.#eventPresenters.set(event.id, eventPresenter);
@@ -74,5 +75,9 @@ export default class EventListPresenter {
   #handleEventChange = (updatedEvent) => {
     this.#eventList = updateItem(this.#eventList, updatedEvent);
     this.#eventPresenters.get(updatedEvent.id).init(updatedEvent);
+  };
+
+  #handleModeChange = () => {
+    this.#eventPresenters.forEach((presenter) => presenter.resetView());
   };
 }
