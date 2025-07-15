@@ -11,4 +11,7 @@ const FilterList = {
   PAST: (eventTripList) => eventTripList.filter((event) => dayjs(event.dateTo).isBefore(dayjs()))
 };
 
-export {capitalizeFirstLetter, getRandomArrayElement, FilterList};
+const updateItem = (items, update) => items.map((item) => item.id === update.id ? update : item);
+
+
+export {capitalizeFirstLetter, getRandomArrayElement, FilterList, updateItem};

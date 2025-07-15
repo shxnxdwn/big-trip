@@ -3,6 +3,7 @@ import EventListView from '../view/event-list-view';
 import EmptyEventListView from '../view/empty-event-list-view';
 import EventPresenter from './event-presenter';
 import {render} from '../framework/render';
+import {updateItem} from '../utils';
 
 
 export default class EventListPresenter {
@@ -67,4 +68,10 @@ export default class EventListPresenter {
     this.#eventPresenters.forEach((presenter) => presenter.destroy());
     this.#eventPresenters.clear();
   }
+
+
+  #handleEventChange = (updatedEvent) => {
+    this.#eventList = updateItem(this.#eventList, updatedEvent);
+    this.#eventPresenters.get(updatedEvent.id).init(updatedEvent);
+  };
 }
