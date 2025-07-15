@@ -12,6 +12,7 @@ export default class EventListPresenter {
   #eventListComponent = new EventListView();
   #sortComponent = new SortView();
   #emptyEventListComponent = new EmptyEventListView();
+  #eventPresenters = new Map();
 
 
   constructor({container, eventListModel}) {
@@ -41,6 +42,8 @@ export default class EventListPresenter {
       container: this.#eventListComponent.element
     });
 
+    this.#eventPresenters.set(event.id, eventPresenter);
+
     eventPresenter.init(event);
   }
 
@@ -57,5 +60,11 @@ export default class EventListPresenter {
     for (let i = 0; i < this.#eventList.length; i++) {
       this.#renderEvent(this.#eventList[i]);
     }
+  }
+
+
+  #clearEventList() {
+    this.#eventPresenters.forEach((presenter) => presenter.destroy());
+    this.#eventPresenters.clear();
   }
 }
