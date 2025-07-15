@@ -1,13 +1,13 @@
 import EventView from '../view/event-view';
 import EditEventView from '../view/edit-event-view';
-import {render, replace} from '../framework/render';
+import {remove, render, replace} from '../framework/render';
 
 
 export default class EventPresenter {
   #container = null;
+  #event = null;
   #eventComponent = null;
   #editEventComponent = null;
-  #event = null;
 
 
   constructor({container}) {
@@ -17,6 +17,9 @@ export default class EventPresenter {
 
   init (event) {
     this.#event = event;
+
+    const prevEventComponent = this.#eventComponent;
+    const prevEditEventComponent = this.#editEventComponent;
 
     this.#eventComponent = new EventView({
       event,
@@ -38,7 +41,28 @@ export default class EventPresenter {
       }
     });
 
-    render(this.#eventComponent, this.#container);
+
+    if(prevEventComponent === null || prevEditEventComponent === null) {
+      render(this.#eventComponent, this.#container);
+      return;
+    }
+
+    if (this.#container.contains(prevEventComponent.element)) {
+      replace(this.#eventComponent, prevEventComponent);
+    }
+
+    if (this.#container.contains(prevEditEventComponent.element)) {
+      replace(this.#eventComponent, prevEditEventComponent);
+    }
+
+    remove(prevEventComponent);
+    remove(prevEditEventComponent);
+  }
+
+
+  destroy() {
+    remove(this.#eventComponent);
+    remove(this.#editEventComponent);
   }
 
 
