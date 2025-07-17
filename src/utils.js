@@ -11,7 +11,14 @@ const FilterList = {
   PAST: (eventTripList) => eventTripList.filter((event) => dayjs(event.dateTo).isBefore(dayjs()))
 };
 
+const SortList = {
+  EVENT: () => 0,
+  TIME: () => 0,
+  PRICE: () => 0,
+  OFFERS: () => 0
+};
+
 const updateItem = (items, update) => items.map((item) => item.id === update.id ? update : item);
 
 
-export {capitalizeFirstLetter, getRandomArrayElement, FilterList, updateItem};
+export {capitalizeFirstLetter, getRandomArrayElement, FilterList, SortList, updateItem};

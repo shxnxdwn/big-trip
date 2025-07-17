@@ -3,7 +3,7 @@ import EventListView from '../view/event-list-view';
 import EmptyEventListView from '../view/empty-event-list-view';
 import EventPresenter from './event-presenter';
 import {render} from '../framework/render';
-import {updateItem} from '../utils';
+import {SortList, updateItem} from '../utils';
 import {SortType} from '../constants';
 
 
@@ -44,9 +44,17 @@ export default class EventListPresenter {
   #sortEvents(sortType) {
     switch (sortType) {
       case SortType.EVENT:
+        this.#eventList.sort(SortList.EVENT);
+        break;
       case SortType.TIME:
+        this.#eventList.sort(SortList.TIME);
+        break;
       case SortType.PRICE:
+        this.#eventList.sort(SortList.PRICE);
+        break;
       case SortType.OFFERS:
+        this.#eventList.sort(SortList.OFFERS);
+        break;
       default:
         this.#eventList = this.#sourcedEventList;
     }
