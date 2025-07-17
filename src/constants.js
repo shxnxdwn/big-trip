@@ -1,5 +1,12 @@
 const FILTER_TYPES = ['everything', 'future', 'present', 'past'];
-const SORT_TYPES = ['day', 'event', 'time', 'price', 'offers'];
+
+const SortType = {
+  DAY: 'day',
+  EVENT: 'event',
+  TIME: 'time',
+  PRICE: 'price',
+  OFFERS: 'offers'
+};
 
 const EmptyEventListMessages = {
   EVERYTHING: 'Click New Event to create your first point',
@@ -52,4 +59,4 @@ const BLANK_EVENT = {
 };
 
 
-export {BLANK_EVENT, FILTER_TYPES, SORT_TYPES, EmptyEventListMessages};
+export {BLANK_EVENT, FILTER_TYPES, SortType, EmptyEventListMessages};

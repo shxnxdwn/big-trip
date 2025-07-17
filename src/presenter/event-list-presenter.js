@@ -4,14 +4,17 @@ import EmptyEventListView from '../view/empty-event-list-view';
 import EventPresenter from './event-presenter';
 import {render} from '../framework/render';
 import {updateItem} from '../utils';
+import {SortType} from '../constants';
 
 
 export default class EventListPresenter {
   #container = null;
   #eventListModel = null;
   #eventList = [];
+  #sortComponent = null;
+  #currentSortType = SortType.DAY;
+  #sourcedEventList = [];
   #eventListComponent = new EventListView();
-  #sortComponent = new SortView();
   #emptyEventListComponent = new EmptyEventListView();
   #eventPresenters = new Map();
 
@@ -24,12 +27,31 @@ export default class EventListPresenter {
 
   init() {
     this.#eventList = [...this.#eventListModel.eventList];
+    this.#sourcedEventList = [...this.#eventListModel.eventList];
     this.#renderEventList();
   }
 
 
   #renderSort() {
+    this.#sortComponent = new SortView({
+      onSortTypeChange: this.#handleSortChange
+    });
+
     render(this.#sortComponent, this.#container);
+  }
+
+
+  #sortEvents(sortType) {
+    switch (sortType) {
+      case SortType.EVENT:
+      case SortType.TIME:
+      case SortType.PRICE:
+      case SortType.OFFERS:
+      default:
+        this.#eventList = this.#sourcedEventList;
+    }
+
+    this.#currentSortType = sortType;
   }
 
 
@@ -74,10 +96,21 @@ export default class EventListPresenter {
 
   #handleEventChange = (updatedEvent) => {
     this.#eventList = updateItem(this.#eventList, updatedEvent);
+    this.#sourcedEventList = updateItem(this.#sourcedEventList, updatedEvent);
     this.#eventPresenters.get(updatedEvent.id).init(updatedEvent);
   };
 
+
   #handleModeChange = () => {
     this.#eventPresenters.forEach((presenter) => presenter.resetView());
+  };
+
+
+  #handleSortChange = (sortType) => {
+    if(this.#currentSortType === sortType) {
+      return;
+    }
+
+    this.#sortEvents(sortType);
   };
 }
