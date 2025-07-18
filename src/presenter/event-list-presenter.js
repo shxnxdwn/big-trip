@@ -28,6 +28,7 @@ export default class EventListPresenter {
   init() {
     this.#eventList = [...this.#eventListModel.eventList];
     this.#sourcedEventList = [...this.#eventListModel.eventList];
+    this.#renderSort();
     this.#renderEventList();
   }
 
@@ -82,10 +83,6 @@ export default class EventListPresenter {
 
 
   #renderEventList() {
-    if (this.#sortComponent === null) {
-      this.#renderSort();
-    }
-
     if (this.#eventList.length === 0) {
       this.#renderEmptyList();
       return;
@@ -93,9 +90,7 @@ export default class EventListPresenter {
 
     render(this.#eventListComponent, this.#container);
 
-    for (let i = 0; i < this.#eventList.length; i++) {
-      this.#renderEvent(this.#eventList[i]);
-    }
+    this.#eventList.forEach((event) => this.#renderEvent(event));
   }
 
 
