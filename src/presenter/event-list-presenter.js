@@ -27,6 +27,7 @@ export default class EventListPresenter {
 
   init() {
     this.#eventList = [...this.#eventListModel.eventList];
+    console.log(this.#eventList)
     this.#sourcedEventList = [...this.#eventListModel.eventList];
     this.#renderEventList();
   }
@@ -43,17 +44,11 @@ export default class EventListPresenter {
 
   #sortEvents(sortType) {
     switch (sortType) {
-      case SortType.EVENT:
-        this.#eventList.sort(SortList.EVENT);
-        break;
       case SortType.TIME:
         this.#eventList.sort(SortList.TIME);
         break;
       case SortType.PRICE:
         this.#eventList.sort(SortList.PRICE);
-        break;
-      case SortType.OFFERS:
-        this.#eventList.sort(SortList.OFFERS);
         break;
       default:
         this.#eventList = this.#sourcedEventList;
@@ -120,5 +115,8 @@ export default class EventListPresenter {
     }
 
     this.#sortEvents(sortType);
+
+    this.#clearEventList();
+    this.#renderEventList();
   };
 }

@@ -1,5 +1,4 @@
 import AbstractView from '../framework/view/abstract-view';
-import {BLANK_EVENT} from '../constants';
 import dayjs from 'dayjs';
 
 
@@ -186,7 +185,7 @@ const createAddEventTemplate = (event) => `
 export default class AddEventView extends AbstractView {
   #event = null;
 
-  constructor({event = BLANK_EVENT}) {
+  constructor({event = null}) {
     super();
     this.#event = event;
   }

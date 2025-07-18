@@ -12,10 +12,8 @@ const FilterList = {
 };
 
 const SortList = {
-  EVENT: () => 0,
   TIME: () => 0,
   PRICE: () => 0,
-  OFFERS: () => 0
 };
 
 const updateItem = (items, update) => items.map((item) => item.id === update.id ? update : item);
