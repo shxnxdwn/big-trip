@@ -27,18 +27,23 @@ export default class EventListPresenter {
 
   init() {
     this.#eventList = [...this.#eventListModel.eventList];
-    console.log(this.#eventList)
     this.#sourcedEventList = [...this.#eventListModel.eventList];
     this.#renderEventList();
   }
 
 
   #renderSort() {
+    if (this.#sortComponent !== null) {
+      this.#sortComponent.element.remove();
+      this.#sortComponent = null;
+    }
+
     this.#sortComponent = new SortView({
-      onSortTypeChange: this.#handleSortChange
+      onSortTypeChange: this.#handleSortChange,
+      currentSortType: this.#currentSortType
     });
 
-    render(this.#sortComponent, this.#container);
+    render(this.#sortComponent, this.#container, 'afterbegin');
   }
 
 
@@ -51,7 +56,7 @@ export default class EventListPresenter {
         this.#eventList.sort(SortList.PRICE);
         break;
       default:
-        this.#eventList = this.#sourcedEventList;
+        this.#eventList = [...this.#sourcedEventList];
     }
 
     this.#currentSortType = sortType;
@@ -77,13 +82,16 @@ export default class EventListPresenter {
 
 
   #renderEventList() {
-    this.#renderSort();
-    render(this.#eventListComponent, this.#container);
+    if (this.#sortComponent === null) {
+      this.#renderSort();
+    }
 
     if (this.#eventList.length === 0) {
       this.#renderEmptyList();
       return;
     }
+
+    render(this.#eventListComponent, this.#container);
 
     for (let i = 0; i < this.#eventList.length; i++) {
       this.#renderEvent(this.#eventList[i]);
@@ -110,13 +118,17 @@ export default class EventListPresenter {
 
 
   #handleSortChange = (sortType) => {
+    if (sortType === 'event' || sortType === 'offers') {
+      return;
+    }
+
     if(this.#currentSortType === sortType) {
       return;
     }
 
     this.#sortEvents(sortType);
-
     this.#clearEventList();
+    this.#renderSort();
     this.#renderEventList();
   };
 }
