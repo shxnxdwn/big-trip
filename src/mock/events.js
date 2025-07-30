@@ -1,4 +1,4 @@
-const mockEventDestinations = [
+export const mockEventDestinations = [
   {
     'id': '295a89ae-a73d-4f99-90a3-8c23a40644c2',
     'description': 'Munich - in a middle of Europe',
@@ -198,7 +198,7 @@ const mockEventDestinations = [
   }
 ];
 
-const mockEventOffers = [
+export const mockEventOffers = [
   {
     'type': 'taxi',
     'offers': [
@@ -405,7 +405,7 @@ const mockEventOffers = [
   }
 ];
 
-const mockEvents = [
+export const mockEvents = [
   {
     'id': '3892c795-0030-44e7-8b85-2f6f031e35be',
     'basePrice': 8787,

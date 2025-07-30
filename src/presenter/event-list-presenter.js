@@ -11,9 +11,11 @@ export default class EventListPresenter {
   #container = null;
   #eventListModel = null;
   #eventList = [];
+  #offersList = [];
+  #destinationsList = [];
+  #sourcedEventList = [];
   #sortComponent = null;
   #currentSortType = SortType.DAY;
-  #sourcedEventList = [];
   #eventListComponent = new EventListView();
   #emptyEventListComponent = new EmptyEventListView();
   #eventPresenters = new Map();
@@ -27,6 +29,8 @@ export default class EventListPresenter {
 
   init() {
     this.#eventList = [...this.#eventListModel.eventList];
+    this.#destinationsList = [...this.#eventListModel.destinationsList];
+    this.#offersList = [...this.#eventListModel.offersList];
     this.#sourcedEventList = [...this.#eventListModel.eventList];
     this.#renderSort();
     this.#renderEventList();
@@ -72,6 +76,8 @@ export default class EventListPresenter {
   #renderEvent(event) {
     const eventPresenter = new EventPresenter({
       container: this.#eventListComponent.element,
+      allDestinations: this.#destinationsList,
+      allOffers: this.#offersList,
       onDataChange: this.#handleEventChange,
       onModeChange: this.#handleModeChange
     });

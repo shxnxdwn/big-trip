@@ -1,4 +1,5 @@
-import AbstractView from '../framework/view/abstract-view';
+import AbstractStatefulView from '../framework/view/abstract-stateful-view';
+import flatpickr from 'flatpickr';
 import dayjs from 'dayjs';
 
 
@@ -115,9 +116,9 @@ const createEventPriceTemplate = ({basePrice}) => `
   <div class="event__field-group  event__field-group--price">
     <label class="event__label" for="event-price-1">
       <span class="visually-hidden">Price</span>
-      &euro; ${basePrice}
+      &euro;
     </label>
-    <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="">
+    <input class="event__input  event__input--price" id="event-price-1" type="text" name="event-price" value="${basePrice}">
   </div>
 `;
 
@@ -142,10 +143,15 @@ const createEventOffersTemplate = ({offers}) => `
 `;
 
 
-const createEventDestinationInfoTemplate = ({destination: {description}}) => `
+const createEventDestinationInfoTemplate = ({destination: {description, pictures}}) => `
   <section class="event__section  event__section--destination">
     <h3 class="event__section-title  event__section-title--destination">Destination</h3>
     <p class="event__destination-description">${description}</p>
+    <div class="event__photos-container">
+      <div class="event__photos-tape">
+        ${pictures.map((picture) => `<img class="event__photo" src="${picture.src}" alt="Event photo"/>`).join('')}
+      </div>
+    </div>
   </section>
 `;
 
@@ -179,35 +185,147 @@ const createEditEventTemplate = (event) => `
 `;
 
 
-export default class EditEventView extends AbstractView {
+export default class EditEventView extends AbstractStatefulView {
   #event = null;
   #handleFormSubmit = null;
   #handleCloseButtonClick = null;
+  #allDestinations = null;
+  #allOffers = null;
+  #flatpickrStart = null;
+  #flatpickrEnd = null;
 
-  constructor({event, onFormSubmit, onClickCloseButton}) {
+
+  constructor({event, allDestinations, allOffers, onFormSubmit, onClickCloseButton}) {
     super();
+    this._setState(EditEventView.parseEventToState(event));
     this.#event = event;
+    this.#allDestinations = allDestinations;
+    this.#allOffers = allOffers;
     this.#handleFormSubmit = onFormSubmit;
     this.#handleCloseButtonClick = onClickCloseButton;
-    this.#setEventListeners();
+    this._restoreHandlers();
   }
+
 
   get template() {
-    return createEditEventTemplate(this.#event);
+    return createEditEventTemplate(this._state);
   }
 
-  #setEventListeners() {
+
+  removeElement() {
+    super.removeElement();
+
+    if (this.#flatpickrStart) {
+      this.#flatpickrStart.destroy();
+      this.#flatpickrStart = null;
+    }
+
+    if (this.#flatpickrEnd) {
+      this.#flatpickrEnd.destroy();
+      this.#flatpickrEnd = null;
+    }
+  }
+
+
+  reset() {
+    // this.updateElement();
+    // TODO: END
+  }
+
+
+  _restoreHandlers() {
     this.element.querySelector('.event--edit').addEventListener('submit', this.#clickSubmitHandler);
     this.element.querySelector('.event__rollup-btn').addEventListener('click', this.#clickCloseButtonHandler);
+    this.element.querySelector('.event__type-group').addEventListener('change', this.#changeTypeHandler);
+    this.element.querySelector('.event__input--destination').addEventListener('change', this.#changeDestinationHandler);
+    this.element.querySelector('.event__input--price').addEventListener('input', this.#changePriceHandler);
+
+    this.#setFlatpickrStart();
+    this.#setFlatpickrEnd();
   }
+
+
+  #setFlatpickrStart() {
+    this.#flatpickrStart = flatpickr(this.element.querySelector('#event-end-time-1'),
+      {
+        dateFormat: 'd/m/y H:i',
+        enableTime: true,
+        'time_24hr': true,
+        defaultDate: this._state.dateFrom,
+        maxDate: this._state.dateTo,
+        onChange: this.#changeDateFromHandler
+      });
+  }
+
+
+  #setFlatpickrEnd() {
+    this.#flatpickrStart = flatpickr(this.element.querySelector('#event-end-time-1'),
+      {
+        dateFormat: 'd/m/y H:i',
+        enableTime: true,
+        'time_24hr': true,
+        minDate: this._state.dateFrom,
+        defaultDate: this._state.dateTo,
+        onChange: this.#changeDateToHandler
+      });
+  }
+
 
   #clickSubmitHandler = (evt) => {
     evt.preventDefault();
-    this.#handleFormSubmit();
+    this.#handleFormSubmit(EditEventView.parseStateToEvent(this.#event));
   };
+
 
   #clickCloseButtonHandler = (evt) => {
     evt.preventDefault();
-    this.#handleCloseButtonClick();
+    this.#handleCloseButtonClick(EditEventView.parseStateToEvent(this.#event));
   };
+
+
+  #changeTypeHandler = (evt) => {
+    evt.preventDefault();
+    const targetType = evt.target.value;
+    const typeOffers = this.#allOffers.find((item) => item.type === targetType).offers;
+
+    this.updateElement({type: targetType, offers: typeOffers});
+  };
+
+
+  #changeDestinationHandler = (evt) => {
+    evt.preventDefault();
+    const currentDestination = evt.target.value;
+    const newDestination = this.#allDestinations.find((item) => item.name === currentDestination);
+
+    this.updateElement({destination: newDestination});
+  };
+
+
+  #changePriceHandler = (evt) => {
+    evt.preventDefault();
+    this._setState({basePrice: evt.target.value});
+  };
+
+
+  #changeDateFromHandler = ([userDate]) => {
+    this._setState({dateFrom: userDate});
+  };
+
+
+  #changeDateToHandler = ([userDate]) => {
+    this._setState({dateTo: userDate});
+  };
+
+
+  static parseEventToState(event) {
+    return {
+      ...event,
+    };
+  }
+
+  static parseStateToEvent(state) {
+    const event = {...state};
+
+    return event;
+  }
 }
