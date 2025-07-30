@@ -87,6 +87,7 @@ const createEventDestinationTemplate = ({type, destination, allDestinations}) =>
 const createEventDurationTemplate = ({dateFrom, dateTo}) => {
   const startTime = dayjs(dateFrom).format('DD/MM/YY HH:mm');
   const endTime = dayjs(dateTo).format('DD/MM/YY HH:mm');
+
   return `
     <div class="event__field-group  event__field-group--time">
       <label class="visually-hidden" for="event-start-time-1">From</label>
@@ -132,22 +133,17 @@ const createEventOffersTemplate = (availableOffers, checkedOffers) => {
 };
 
 
-const createEventDestinationInfoTemplate = ({destination}) => {
-  if (!destination || !destination.description) {
-    return '';
-  }
-  return `
-    <section class="event__section  event__section--destination">
-      <h3 class="event__section-title  event__section-title--destination">Destination</h3>
-      <p class="event__destination-description">${destination.description}</p>
-      ${destination.pictures.length > 0 ? `
-        <div class="event__photos-container">
-          <div class="event__photos-tape">
-            ${destination.pictures.map((picture) => `<img class="event__photo" src="${picture.src}" alt="${picture.description}">`).join('')}
-          </div>
-        </div>` : ''}
-    </section>`;
-};
+const createEventDestinationInfoTemplate = ({destination}) => `
+  <section class="event__section  event__section--destination">
+    <h3 class="event__section-title  event__section-title--destination">Destination</h3>
+    <p class="event__destination-description">${destination.description}</p>
+    ${destination.pictures.length > 0 ? `
+      <div class="event__photos-container">
+        <div class="event__photos-tape">
+          ${destination.pictures.map((picture) => `<img class="event__photo" src="${picture.src}" alt="${picture.description}">`).join('')}
+        </div>
+      </div>` : ''}
+  </section>`;
 
 
 const createEditEventTemplate = (state, allDestinations, allOffers) => {
@@ -227,12 +223,6 @@ export default class EditEventView extends AbstractStatefulView {
     this.element.querySelector('.event__type-group').addEventListener('change', this.#typeChangeHandler);
     this.element.querySelector('.event__input--destination').addEventListener('change', this.#destinationChangeHandler);
     this.element.querySelector('.event__input--price').addEventListener('input', this.#priceInputHandler);
-
-    const offersContainer = this.element.querySelector('.event__available-offers');
-
-    if (offersContainer) {
-      offersContainer.addEventListener('change', this.#offerChangeHandler);
-    }
 
     this.#setDatepickers();
   }

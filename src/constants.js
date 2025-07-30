@@ -15,4 +15,14 @@ const EmptyEventListMessages = {
 };
 
 
-export {SortType, EmptyEventListMessages};
+const BLANK_EVENT = {
+  basePrice: 0,
+  dateFrom: null,
+  dateTo: null,
+  destination: null,
+  offers: [],
+  type: 'flight'
+};
+
+
+export {SortType, BLANK_EVENT, EmptyEventListMessages};
