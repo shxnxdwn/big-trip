@@ -2,8 +2,8 @@ import InfoView from './view/info-view';
 import FilterView from './view/filter-view';
 import EventListPresenter from './presenter/event-list-presenter';
 import EventListModel from './model/event-list-model';
-import {FilterList} from './utils';
 import {render, RenderPosition} from './framework/render';
+import {FilterList} from './utils';
 
 
 const infoContainer = document.querySelector('.trip-main');
